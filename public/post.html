@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Post | Kshitij Sonal</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">Kshitij Sonal</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/index.html">Home</a></li><li><a href="/research.html">Research</a></li>
+    <li><a href="/articles.html">Articles</a></li><li><a href="/news.html">News</a></li>
+    <li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="window.location='/admin/login.html'">⚙ Admin</button>
+  <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="post-wrap" id="post-wrap">
+  <div class="loader"><div class="spinner"></div></div>
+</div>
+
+<footer class="footer" id="footer-text"><p>© 2025 Kshitij Sonal. All rights reserved.</p></footer>
+<script src="/main.js"></script>
+<script>
+async function loadPost() {
+  const s = await applyTheme();
+  if (s?.hero?.footerText) document.getElementById('footer-text').innerHTML = '<p>' + s.hero.footerText + '</p>';
+
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get('type');
+  const id   = params.get('id');
+  const wrap = document.getElementById('post-wrap');
+
+  if (!type || !id) { wrap.innerHTML = '<p style="color:var(--muted);text-align:center;padding:4rem">Invalid post URL.</p>'; return; }
+
+  const backMap = { research: '/research.html', articles: '/articles.html', news: '/news.html' };
+  const backLabel = { research: 'Research Papers', articles: 'Articles', news: 'News' };
+
+  try {
+    const item = await fetch('/api/post/' + type + '/' + id).then(x=>x.json());
+    document.title = (item.title || item.headline) + ' | Kshitij Sonal';
+
+    const typeLabel = { research: 'Research Paper', articles: 'Article', news: 'News' }[type] || type;
+    const badgeCls  = { research: 'badge-research', articles: 'badge-article', news: 'badge-news' }[type] || 'badge-article';
+
+    const title    = item.title || item.headline || 'Untitled';
+    const date     = item.date ? fmtDate(item.date) : '';
+    const body     = item.body || item.content || '';
+    const area     = item.area || item.category || '';
+    const keywords = item.keywords || item.tags || [];
+    const link     = item.link || '';
+
+    const kwHtml = keywords.length
+      ? '<div class="post-keywords">' + keywords.map(k => '<span class="keyword-chip">' + k + '</span>').join('') + '</div>'
+      : '';
+
+    const extLink = link
+      ? '<div class="post-external"><strong style="color:var(--gold)">🔗 External Link</strong><br><a href="' + link + '" target="_blank" rel="noopener" style="color:var(--text-sec)">' + link + '</a></div>'
+      : '';
+
+    wrap.innerHTML = `
+      <a href="${backMap[type] || '/'}" class="post-back">← Back to ${backLabel[type] || 'Posts'}</a>
+      <div class="post-type-badge"><span class="card-badge ${badgeCls}">${typeLabel}</span>${area ? ' <span class="card-badge badge-policy">' + area + '</span>' : ''}</div>
+      <h1 class="post-title">${title}</h1>
+      <div class="post-meta">
+        <span class="post-meta-item">📅 <strong>Date:</strong> ${date}</span>
+        <span class="post-meta-item">✍ <strong>Author:</strong> ${(s?.about?.name) || 'Kshitij Sonal'}</span>
+      </div>
+      ${kwHtml}
+      <div class="post-body">${body || '<p style="color:var(--muted)">Full content not available.</p>'}</div>
+      ${extLink}
+    `;
+  } catch(e) {
+    wrap.innerHTML = '<a href="/" class="post-back">← Back to Home</a><p style="color:var(--muted);text-align:center;padding:4rem">Post not found or failed to load.</p>';
+  }
+}
+document.addEventListener('DOMContentLoaded', loadPost);
+</script>
+</body></html>

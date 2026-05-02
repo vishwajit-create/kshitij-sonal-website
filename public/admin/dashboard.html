@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Dashboard | Kshitij Sonal</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div class="admin-layout">
+<!-- Sidebar -->
+<aside class="admin-sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-logo">Kshitij Sonal</span>
+    <div class="sidebar-subtitle">Admin Control Room</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Overview</div>
+    <button class="sidebar-link active" data-panel="dashboard"><span class="icon">📊</span> Dashboard</button>
+    <div class="sidebar-section-label">Content</div>
+    <button class="sidebar-link" data-panel="publish"><span class="icon">✍</span> Publish</button>
+    <button class="sidebar-link" data-panel="manage"><span class="icon">🗂</span> Manage Content</button>
+    <div class="sidebar-section-label">Configuration</div>
+    <button class="sidebar-link" data-panel="customize"><span class="icon">🎨</span> Customize</button>
+    <button class="sidebar-link" data-panel="settings"><span class="icon">⚙</span> Settings</button>
+    <div class="sidebar-section-label">Site</div>
+    <button class="sidebar-link" onclick="window.open('/', '_blank')"><span class="icon">🌐</span> View Site</button>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-user" id="sb-user">Logged in as admin</div>
+    <button class="btn btn-ghost btn-sm btn-full" id="logout-btn">🚪 Logout</button>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="admin-main">
+  <div class="admin-topbar">
+    <div style="display:flex;align-items:center;gap:1rem">
+      <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+      <span class="admin-topbar-title" id="topbar-title">Dashboard</span>
+    </div>
+    <div style="display:flex;gap:0.75rem;align-items:center">
+      <span style="font-size:0.8rem;color:var(--muted)" id="topbar-time"></span>
+      <a href="/" class="btn btn-ghost btn-sm">🌐 Site</a>
+    </div>
+  </div>
+  <div class="admin-content">
+
+    <!-- ── DASHBOARD PANEL ── -->
+    <div class="panel active" id="panel-dashboard">
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card"><div class="stat-card-value" id="s-research">—</div><div class="stat-card-label">Research Papers</div></div>
+        <div class="stat-card"><div class="stat-card-value" id="s-articles">—</div><div class="stat-card-label">Articles</div></div>
+        <div class="stat-card"><div class="stat-card-value" id="s-news">—</div><div class="stat-card-label">News Posts</div></div>
+        <div class="stat-card"><div class="stat-card-value" id="s-total">—</div><div class="stat-card-label">Total Posts</div></div>
+      </div>
+      <div class="section-hdr"><h2>Recent Activity</h2></div>
+      <div class="recent-list" id="recent-list"><div style="color:var(--muted);padding:1rem">Loading...</div></div>
+    </div>
+
+    <!-- ── PUBLISH PANEL ── -->
+    <div class="panel" id="panel-publish">
+      <div class="section-hdr"><h2>Publish New Content</h2></div>
+      <div class="pub-tabs">
+        <button class="pub-tab active" data-tab="research">📄 Research Paper</button>
+        <button class="pub-tab" data-tab="article">✍ Article</button>
+        <button class="pub-tab" data-tab="news">📢 News</button>
+      </div>
+
+      <!-- Research Form -->
+      <form class="pub-form active" id="form-research" data-type="research">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Title *</label><input type="text" name="title" class="form-input" placeholder="Paper title" required></div>
+          <div class="form-group"><label class="form-label">Research Area *</label><input type="text" name="area" class="form-input" placeholder="e.g. Macroeconomics" required></div>
+        </div>
+        <div class="form-group"><label class="form-label">Abstract *</label><textarea name="abstract" class="form-textarea" placeholder="Brief abstract of the paper..." required style="min-height:100px"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Keywords (comma separated)</label><input type="text" name="keywords" class="form-input" placeholder="GDP, India, Policy"></div>
+          <div class="form-group"><label class="form-label">Date *</label><input type="date" name="date" class="form-input" required></div>
+        </div>
+        <div class="form-group"><label class="form-label">Full Body (HTML supported)</label><textarea name="body" class="form-textarea" placeholder="<h2>Introduction</h2><p>Full paper content...</p>" style="min-height:200px"></textarea></div>
+        <div class="form-group"><label class="form-label">External Link (optional)</label><input type="url" name="link" class="form-input" placeholder="https://journal.com/paper"></div>
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">📤 Publish Research</button>
+          <span class="form-result" style="font-size:0.875rem"></span>
+        </div>
+      </form>
+
+      <!-- Article Form -->
+      <form class="pub-form" id="form-article" data-type="articles">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Title *</label><input type="text" name="title" class="form-input" placeholder="Article title" required></div>
+          <div class="form-group"><label class="form-label">Category *</label>
+            <select name="category" class="form-select"><option>Commentary</option><option>Economics</option><option>Policy</option><option>Analysis</option><option>Opinion</option><option>Essay</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Excerpt *</label><textarea name="excerpt" class="form-textarea" placeholder="Short description shown on listing page..." required style="min-height:80px"></textarea></div>
+        <div class="form-group"><label class="form-label">Full Body (HTML supported)</label><textarea name="body" class="form-textarea" placeholder="<p>Article content...</p>" style="min-height:200px"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Tags (comma separated)</label><input type="text" name="tags" class="form-input" placeholder="India, Economics, Policy"></div>
+          <div class="form-group"><label class="form-label">Date *</label><input type="date" name="date" class="form-input" required></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">📤 Publish Article</button>
+          <span class="form-result" style="font-size:0.875rem"></span>
+        </div>
+      </form>
+
+      <!-- News Form -->
+      <form class="pub-form" id="form-news" data-type="news">
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Headline *</label><input type="text" name="headline" class="form-input" placeholder="News headline" required></div>
+          <div class="form-group"><label class="form-label">Category *</label>
+            <select name="category" class="form-select"><option>Publication</option><option>Event</option><option>Media</option><option>Award</option><option>Announcement</option><option>General</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Full Content *</label><textarea name="content" class="form-textarea" placeholder="Full news content..." required style="min-height:140px"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Date *</label><input type="date" name="date" class="form-input" required></div>
+          <div class="form-group"><label class="form-label">External Link (optional)</label><input type="url" name="link" class="form-input" placeholder="https://..."></div>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">📤 Post News</button>
+          <span class="form-result" style="font-size:0.875rem"></span>
+        </div>
+      </form>
+    </div>
+
+    <!-- ── MANAGE PANEL ── -->
+    <div class="panel" id="panel-manage">
+      <div class="section-hdr">
+        <h2>All Content</h2>
+        <button class="btn btn-ghost btn-sm" onclick="loadManage()">↻ Refresh</button>
+      </div>
+      <div class="manage-table-wrap">
+        <div class="manage-filter">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="research">Research</button>
+          <button class="filter-btn" data-filter="articles">Articles</button>
+          <button class="filter-btn" data-filter="news">News</button>
+        </div>
+        <div id="manage-table-wrap" style="overflow-x:auto">
+          <table class="data-table">
+            <thead><tr><th>#</th><th>Title</th><th class="hide-sm">Type</th><th class="hide-sm">Date</th><th>Actions</th></tr></thead>
+            <tbody id="manage-tbody"><tr><td colspan="5" style="text-align:center;color:var(--muted);padding:2rem">Loading...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CUSTOMIZE PANEL ── -->
+    <div class="panel" id="panel-customize">
+      <div class="section-hdr"><h2>Customize Site</h2><button class="btn btn-primary btn-sm" id="save-customize-btn">💾 Save All Changes</button></div>
+      <div id="customize-msg" style="display:none;margin-bottom:1rem"></div>
+
+      <!-- Hero -->
+      <div class="customize-section">
+        <div class="customize-section-title">🏠 Hero & Homepage</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Site Title</label><input type="text" id="c-siteTitle" class="form-input" placeholder="Kshitij Sonal"></div>
+          <div class="form-group"><label class="form-label">Site Tagline</label><input type="text" id="c-tagline" class="form-input" placeholder="Researcher · Economist · Writer"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Hero Kicker (small text above heading)</label><input type="text" id="c-kicker" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Hero Meta Line</label><input type="text" id="c-metaLine" class="form-input"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Hero Heading</label><input type="text" id="c-heading" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Hero Subtitle</label><textarea id="c-subtitle" class="form-textarea" style="min-height:60px"></textarea></div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">CTA Button 1 Text</label><input type="text" id="c-cta1Text" class="form-input"></div>
+          <div class="form-group"><label class="form-label">CTA Button 1 Link</label><input type="text" id="c-cta1Link" class="form-input"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">CTA Button 2 Text</label><input type="text" id="c-cta2Text" class="form-input"></div>
+          <div class="form-group"><label class="form-label">CTA Button 2 Link</label><input type="text" id="c-cta2Link" class="form-input"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Stat 1 Value</label><input type="text" id="c-stat1Value" class="form-input" placeholder="#5 World"></div>
+          <div class="form-group"><label class="form-label">Stat 1 Label</label><input type="text" id="c-stat1Label" class="form-input" placeholder="India GDP Rank"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Stat 2 Value</label><input type="text" id="c-stat2Value" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Stat 2 Label</label><input type="text" id="c-stat2Label" class="form-input"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Stat 3 Value</label><input type="text" id="c-stat3Value" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Stat 3 Label</label><input type="text" id="c-stat3Label" class="form-input"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Stat 4 Value</label><input type="text" id="c-stat4Value" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Stat 4 Label</label><input type="text" id="c-stat4Label" class="form-input"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Footer Text</label><input type="text" id="c-footerText" class="form-input"></div>
+      </div>
+
+      <!-- About -->
+      <div class="customize-section">
+        <div class="customize-section-title">👤 About & Bio</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Your Name</label><input type="text" id="c-name" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Title Line</label><input type="text" id="c-titleLine" class="form-input"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Bio Paragraph 1</label><textarea id="c-bio1" class="form-textarea" style="min-height:80px"></textarea></div>
+        <div class="form-group"><label class="form-label">Bio Paragraph 2</label><textarea id="c-bio2" class="form-textarea" style="min-height:80px"></textarea></div>
+        <div class="form-group"><label class="form-label">Bio Paragraph 3</label><textarea id="c-bio3" class="form-textarea" style="min-height:80px"></textarea></div>
+        <div class="form-group"><label class="form-label">Profile Photo URL</label><input type="url" id="c-photoUrl" class="form-input" placeholder="https://..."></div>
+        <div class="form-group"><label class="form-label">Interests (comma separated)</label><input type="text" id="c-interests" class="form-input" placeholder="Economics, Policy, Research..."></div>
+      </div>
+
+      <!-- Social -->
+      <div class="customize-section">
+        <div class="customize-section-title">🔗 Social Links</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">✉️ Email Address</label><input type="email" id="c-email" class="form-input" placeholder="you@example.com"></div>
+          <div class="form-group"><label class="form-label">💼 LinkedIn URL</label><input type="url" id="c-linkedin" class="form-input" placeholder="https://linkedin.com/in/..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">🐦 Twitter / X URL</label><input type="url" id="c-twitter" class="form-input" placeholder="https://twitter.com/..."></div>
+          <div class="form-group"><label class="form-label">💻 GitHub URL</label><input type="url" id="c-github" class="form-input" placeholder="https://github.com/..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">🔬 ResearchGate URL</label><input type="url" id="c-researchgate" class="form-input" placeholder="https://researchgate.net/profile/..."></div>
+          <div class="form-group"><label class="form-label">📋 SSRN Author URL</label><input type="url" id="c-ssrn" class="form-input" placeholder="https://ssrn.com/author=..."></div>
+        </div>
+      </div>
+
+      <!-- Colors -->
+      <div class="customize-section">
+        <div class="customize-section-title">🎨 Colors & Theme</div>
+        <div class="preset-btns">
+          <button type="button" class="preset-btn" data-preset="dark-gold">🌑 Dark Gold</button>
+          <button type="button" class="preset-btn" data-preset="cream-brown">☕ Cream & Brown</button>
+          <button type="button" class="preset-btn" data-preset="navy-white">🌊 Navy & White</button>
+          <button type="button" class="preset-btn" data-preset="deep-green">🌿 Deep Green</button>
+        </div>
+        <div class="color-grid">
+          <div class="color-item"><label>Main Background</label><input type="color" id="c-bg" value="#0f0f0f"></div>
+          <div class="color-item"><label>Surface / Cards</label><input type="color" id="c-surface" value="#1a1a1a"></div>
+          <div class="color-item"><label>Sidebar / Nav</label><input type="color" id="c-sidebar" value="#141414"></div>
+          <div class="color-item"><label>Primary Accent (Gold)</label><input type="color" id="c-gold" value="#c9a84c"></div>
+          <div class="color-item"><label>Secondary Accent (Orange)</label><input type="color" id="c-orange" value="#e07b39"></div>
+          <div class="color-item"><label>Main Text</label><input type="color" id="c-text" value="#e8e8e8"></div>
+          <div class="color-item"><label>Secondary Text</label><input type="color" id="c-textSec" value="#a0a0a0"></div>
+          <div class="color-item"><label>Muted Text</label><input type="color" id="c-muted" value="#555555"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SETTINGS PANEL ── -->
+    <div class="panel" id="panel-settings">
+      <div class="section-hdr"><h2>Settings</h2></div>
+
+      <!-- Change Password -->
+      <div class="settings-card">
+        <div class="settings-card-title">🔑 Change Password</div>
+        <form id="pw-form">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" id="pw-old" class="form-input" required></div>
+            <div class="form-group"><label class="form-label">New Password</label><input type="password" id="pw-new" class="form-input" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Confirm New Password</label><input type="password" id="pw-confirm" class="form-input" required></div>
+          <button type="submit" class="btn btn-primary btn-sm">🔒 Update Password</button>
+          <div id="pw-msg" style="display:none;margin-top:0.75rem"></div>
+        </form>
+      </div>
+
+      <!-- SEO -->
+      <div class="settings-card">
+        <div class="settings-card-title">🔍 SEO Settings</div>
+        <div class="form-group"><label class="form-label">Page Title</label><input type="text" id="seo-title" class="form-input" placeholder="Kshitij Sonal | Researcher & Economist"></div>
+        <div class="form-group"><label class="form-label">Meta Description</label><textarea id="seo-desc" class="form-textarea" style="min-height:80px" placeholder="A short description for search engines..."></textarea></div>
+        <button class="btn btn-primary btn-sm" id="save-seo-btn">💾 Save SEO</button>
+        <div id="seo-msg" style="display:none;margin-top:0.75rem"></div>
+      </div>
+
+      <!-- Export -->
+      <div class="settings-card">
+        <div class="settings-card-title">📦 Export Data</div>
+        <p style="color:var(--text-sec);font-size:0.875rem;margin-bottom:1rem">Download all your content (research, articles, news) as a JSON backup file.</p>
+        <a href="/api/admin/export" class="btn btn-ghost btn-sm" id="export-btn">⬇ Download JSON Backup</a>
+      </div>
+
+      <!-- Site Info -->
+      <div class="settings-card">
+        <div class="settings-card-title">ℹ️ Site Info</div>
+        <div class="site-info-grid">
+          <div class="info-item"><div class="info-label">Version</div><div class="info-value">1.0.0</div></div>
+          <div class="info-item"><div class="info-label">Storage Type</div><div class="info-value">JSON Flat Files</div></div>
+          <div class="info-item"><div class="info-label">Author</div><div class="info-value" id="info-author">Kshitij Sonal</div></div>
+          <div class="info-item"><div class="info-label">Server</div><div class="info-value">Node.js + Express</div></div>
+        </div>
+      </div>
+
+      <!-- Danger Zone -->
+      <div class="settings-card danger-zone">
+        <div class="settings-card-title">⚠️ Danger Zone</div>
+        <p style="color:var(--text-sec);font-size:0.875rem;margin-bottom:1rem">Permanently delete ALL published content. This cannot be undone.</p>
+        <button class="btn btn-danger btn-sm" id="clear-all-btn">🗑 Clear All Content</button>
+        <div id="clear-msg" style="display:none;margin-top:0.75rem"></div>
+      </div>
+    </div>
+
+  </div><!-- /admin-content -->
+</main>
+</div><!-- /admin-layout -->
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="modal-title">Edit Item</h3>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <form id="edit-form">
+      <div id="edit-fields"></div>
+      <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap">
+        <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+        <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <span id="edit-result" style="font-size:0.875rem;align-self:center"></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="/admin/admin.js"></script>
+</body></html>

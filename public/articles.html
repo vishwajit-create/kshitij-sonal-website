@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Articles | Kshitij Sonal</title>
+<meta name="description" content="Essays, articles, and commentary by Kshitij Sonal on economics and policy.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">Kshitij Sonal</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/index.html">Home</a></li><li><a href="/research.html">Research</a></li>
+    <li><a href="/articles.html">Articles</a></li><li><a href="/news.html">News</a></li>
+    <li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="window.location='/admin/login.html'">⚙ Admin</button>
+  <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-kicker">✍ Writing</div>
+  <h1 class="page-hero-title">Articles & Essays</h1>
+  <p class="page-hero-desc">Commentary, analysis, and long-form writing on economics, policy, and contemporary issues.</p>
+</div>
+<section class="section"><div class="section-inner">
+  <div id="articles-grid"><div class="loader"><div class="spinner"></div></div></div>
+</div></section>
+<footer class="footer" id="footer-text"><p>© 2025 Kshitij Sonal. All rights reserved.</p></footer>
+<script src="/main.js"></script>
+<script>
+async function load() {
+  const s = await applyTheme();
+  if (s?.hero?.footerText) document.getElementById('footer-text').innerHTML = '<p>' + s.hero.footerText + '</p>';
+  try {
+    const items = await fetch('/api/articles').then(x=>x.json());
+    const grid = document.getElementById('articles-grid');
+    grid.className = 'cards-grid';
+    grid.innerHTML = items.length ? items.map(articleCard).join('') : emptyHtml('No articles published yet.');
+  } catch(e) { document.getElementById('articles-grid').innerHTML = emptyHtml('Failed to load.'); }
+}
+document.addEventListener('DOMContentLoaded', load);
+</script>
+</body></html>

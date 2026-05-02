@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kshitij Sonal | Researcher & Economist</title>
+<meta name="description" content="Personal research website of Kshitij Sonal — Economist, Policy Analyst, and Published Author.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo" id="nav-logo">Kshitij Sonal</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/research.html">Research</a></li>
+    <li><a href="/articles.html">Articles</a></li>
+    <li><a href="/news.html">News</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="window.location='/admin/login.html'">⚙ Admin</button>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <span class="hero-kicker" id="hero-kicker">✦ Welcome to My Research Hub</span>
+  <h1 class="hero-heading" id="hero-heading">Exploring <span class="gold">India's</span><br>Economic Landscape</h1>
+  <p class="hero-subtitle" id="hero-subtitle">Evidence-based research on macroeconomics, policy, and India's growth story.</p>
+  <p class="hero-meta" id="hero-meta">Researcher | Economist | Policy Analyst | Published Author</p>
+  <div class="hero-ctas">
+    <a href="/research.html" class="btn btn-primary" id="hero-cta1">📄 View Research</a>
+    <a href="/about.html" class="btn btn-secondary" id="hero-cta2">👤 About Me</a>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stats-inner" id="stats-bar">
+    <div class="stat-item"><div class="stat-value" id="stat1-value">#5</div><div class="stat-label" id="stat1-label">India GDP Rank</div></div>
+    <div class="stat-item"><div class="stat-value" id="stat2-value">54%</div><div class="stat-label" id="stat2-label">Services Sector</div></div>
+    <div class="stat-item"><div class="stat-value" id="stat3-value">17%</div><div class="stat-label" id="stat3-label">Manufacturing</div></div>
+    <div class="stat-item"><div class="stat-value" id="stat4-value">#1</div><div class="stat-label" id="stat4-label">IT Export Rank</div></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Latest Work</div>
+      <h2 class="section-title">Featured Research</h2>
+      <p class="section-desc">Recent published papers and ongoing research in economics and policy.</p>
+    </div>
+    <div class="cards-grid" id="research-grid"><div class="loader"><div class="spinner"></div></div></div>
+    <div class="view-all-wrap"><a href="/research.html" class="btn btn-secondary">View All Research →</a></div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(255,255,255,0.01);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Writing & Updates</div>
+      <h2 class="section-title">Articles & News</h2>
+      <p class="section-desc">Essays, commentary, and the latest announcements.</p>
+    </div>
+    <div class="cards-grid" id="articles-grid"><div class="loader"><div class="spinner"></div></div></div>
+    <div class="view-all-wrap" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="/articles.html" class="btn btn-secondary">All Articles →</a>
+      <a href="/news.html" class="btn btn-secondary">All News →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer-text">
+  <p>© 2025 Kshitij Sonal. All rights reserved. | Researcher & Economist</p>
+</footer>
+
+<script src="/main.js"></script>
+<script>
+async function loadHome() {
+  try {
+    const s = await applyTheme();
+    if (s && s.hero) {
+      const h = s.hero;
+      const el = (id) => document.getElementById(id);
+      if (h.siteTitle)  { el('nav-logo').textContent = h.siteTitle; document.title = h.siteTitle; }
+      if (h.kicker)     el('hero-kicker').textContent = '✦ ' + h.kicker;
+      if (h.heading)    el('hero-heading').innerHTML = h.heading;
+      if (h.subtitle)   el('hero-subtitle').textContent = h.subtitle;
+      if (h.metaLine)   el('hero-meta').textContent = h.metaLine;
+      if (h.cta1Text)   { el('hero-cta1').textContent = h.cta1Text; el('hero-cta1').href = h.cta1Link || '#'; }
+      if (h.cta2Text)   { el('hero-cta2').textContent = h.cta2Text; el('hero-cta2').href = h.cta2Link || '#'; }
+      if (h.stat1Value) el('stat1-value').textContent = h.stat1Value;
+      if (h.stat1Label) el('stat1-label').textContent = h.stat1Label;
+      if (h.stat2Value) el('stat2-value').textContent = h.stat2Value;
+      if (h.stat2Label) el('stat2-label').textContent = h.stat2Label;
+      if (h.stat3Value) el('stat3-value').textContent = h.stat3Value;
+      if (h.stat3Label) el('stat3-label').textContent = h.stat3Label;
+      if (h.stat4Value) el('stat4-value').textContent = h.stat4Value;
+      if (h.stat4Label) el('stat4-label').textContent = h.stat4Label;
+      if (h.footerText) el('footer-text').innerHTML = '<p>' + h.footerText + '</p>';
+    }
+  } catch(e) {}
+
+  // Load research
+  try {
+    const r = await fetch('/api/research').then(x=>x.json());
+    const grid = document.getElementById('research-grid');
+    grid.innerHTML = r.length ? r.slice(0,3).map(researchCard).join('') : emptyHtml('No research papers yet.');
+  } catch(e) { document.getElementById('research-grid').innerHTML = emptyHtml('Failed to load.'); }
+
+  // Load articles + news mixed
+  try {
+    const [art, nws] = await Promise.all([
+      fetch('/api/articles').then(x=>x.json()),
+      fetch('/api/news').then(x=>x.json())
+    ]);
+    const grid = document.getElementById('articles-grid');
+    const artCards = art.slice(0,2).map(articleCard);
+    const nwsCards = nws.slice(0,1).map(newsCard);
+    const all = [...artCards, ...nwsCards];
+    grid.innerHTML = all.length ? all.join('') : emptyHtml('No articles yet.');
+  } catch(e) { document.getElementById('articles-grid').innerHTML = emptyHtml('Failed to load.'); }
+}
+document.addEventListener('DOMContentLoaded', loadHome);
+</script>
+</body>
+</html>

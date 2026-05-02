@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About | Kshitij Sonal</title>
+<meta name="description" content="About Kshitij Sonal — Researcher, Economist, and Policy Analyst.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<nav class="navbar">
+  <a href="/" class="nav-logo">Kshitij Sonal</a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="/index.html">Home</a></li><li><a href="/research.html">Research</a></li>
+    <li><a href="/articles.html">Articles</a></li><li><a href="/news.html">News</a></li>
+    <li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-admin-btn" onclick="window.location='/admin/login.html'">⚙ Admin</button>
+  <button class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero">
+  <div class="page-hero-kicker">👤 About</div>
+  <h1 class="page-hero-title" id="about-name">Kshitij Sonal</h1>
+  <p class="page-hero-desc" id="about-title-line">Researcher & Economist | Policy Analyst</p>
+</div>
+<section class="section"><div class="section-inner">
+  <div class="about-grid">
+    <div class="about-content">
+      <div class="about-bio" id="about-bio">
+        <p>Loading bio...</p>
+      </div>
+      <div style="margin-top:2.5rem">
+        <div class="section-label" style="margin-bottom:1rem">Interests & Expertise</div>
+        <div class="interests-grid" id="interests-grid"></div>
+      </div>
+    </div>
+    <div class="about-photo-wrap">
+      <div id="about-photo-container">
+        <div class="about-photo-placeholder">👤</div>
+      </div>
+      <div style="margin-top:1.5rem;text-align:center">
+        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem">
+          <a href="/research.html" class="btn btn-secondary" style="justify-content:center;font-size:0.8rem;padding:0.6rem 1rem">📄 My Research</a>
+          <a href="/articles.html" class="btn btn-secondary" style="justify-content:center;font-size:0.8rem;padding:0.6rem 1rem">✍ My Articles</a>
+          <a href="/contact.html" class="btn btn-primary" style="justify-content:center;font-size:0.8rem;padding:0.6rem 1rem">📬 Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+<footer class="footer" id="footer-text"><p>© 2025 Kshitij Sonal. All rights reserved.</p></footer>
+<script src="/main.js"></script>
+<script>
+async function load() {
+  const s = await applyTheme();
+  if (!s) return;
+  if (s.hero?.footerText) document.getElementById('footer-text').innerHTML = '<p>' + s.hero.footerText + '</p>';
+  if (s.about) {
+    const a = s.about;
+    if (a.name) { document.getElementById('about-name').textContent = a.name; document.title = 'About ' + a.name + ' | Researcher & Economist'; }
+    if (a.titleLine) document.getElementById('about-title-line').textContent = a.titleLine;
+    const bio = document.getElementById('about-bio');
+    bio.innerHTML = [a.bio1, a.bio2, a.bio3].filter(Boolean).map(p => '<p>' + p + '</p>').join('');
+    if (a.photoUrl) {
+      document.getElementById('about-photo-container').innerHTML = '<img src="' + a.photoUrl + '" alt="' + (a.name||'Profile') + '" class="about-photo" onerror="this.parentElement.innerHTML=\'<div class=about-photo-placeholder>👤</div>\'">';
+    }
+    if (a.interests) {
+      const chips = a.interests.split(',').map(i => '<span class="interest-chip">' + i.trim() + '</span>').join('');
+      document.getElementById('interests-grid').innerHTML = chips;
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', load);
+</script>
+</body></html>

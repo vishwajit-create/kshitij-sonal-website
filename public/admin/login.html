@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Login | Kshitij Sonal</title>
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>⚙ Admin Panel</h1>
+      <p>Kshitij Sonal — Control Room</p>
+    </div>
+    <form class="login-form" id="login-form">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" id="l-user" class="form-input" placeholder="admin" required autofocus>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="l-pass" class="form-input" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" id="l-btn">🔑 Sign In</button>
+      <div class="alert alert-info" style="margin-top:1rem;font-size:0.8rem;text-align:center">Default: admin / admin123</div>
+      <div id="l-err" style="display:none"></div>
+    </form>
+    <div style="text-align:center;margin-top:1.5rem">
+      <a href="/" style="font-size:0.8rem;color:var(--muted)">← Back to Website</a>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('l-btn');
+  const err = document.getElementById('l-err');
+  btn.textContent = '⏳ Signing in...'; btn.disabled = true;
+  err.style.display = 'none';
+  try {
+    const res = await fetch('/api/admin/login', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ username: document.getElementById('l-user').value, password: document.getElementById('l-pass').value })
+    });
+    const data = await res.json();
+    if (data.success) { window.location = '/admin/dashboard.html'; }
+    else {
+      err.textContent = '❌ ' + (data.error || 'Invalid credentials');
+      err.className = 'alert alert-error'; err.style.display = 'block';
+    }
+  } catch {
+    err.textContent = '❌ Network error. Please try again.';
+    err.className = 'alert alert-error'; err.style.display = 'block';
+  }
+  btn.textContent = '🔑 Sign In'; btn.disabled = false;
+});
+// Check if already logged in
+fetch('/api/admin/check').then(r=>r.json()).then(d=>{ if(d.isAdmin) window.location='/admin/dashboard.html'; });
+</script>
+</body></html>
