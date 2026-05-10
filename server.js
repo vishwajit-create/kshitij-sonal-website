@@ -1,6 +1,6 @@
 ﻿require('dotenv').config();
 const express = require('express');
-const session = require(.express-session.);
+const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
