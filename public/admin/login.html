@@ -32,11 +32,8 @@
 </div>
 <script>
 // If already have a valid token, go to dashboard
-const existing = localStorage.getItem('ks_admin_token');
 if (existing) {
-  fetch('/api/admin/check', { headers: { 'Authorization': 'Bearer ' + existing } })
     .then(r => r.json()).then(d => { if (d.isAdmin) window.location = '/admin/dashboard.html'; })
-    .catch(() => localStorage.removeItem('ks_admin_token'));
 }
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
@@ -51,8 +48,7 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
       body: JSON.stringify({ username: document.getElementById('l-user').value, password: document.getElementById('l-pass').value })
     });
     const data = await res.json();
-    if (data.success && data.token) {
-      localStorage.setItem('ks_admin_token', data.token);
+    if (data.success) {
       window.location = '/admin/dashboard.html';
     } else {
       err.textContent = '❌ ' + (data.error || 'Invalid credentials');
