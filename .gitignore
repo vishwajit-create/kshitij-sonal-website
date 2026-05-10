@@ -1,4 +1,5 @@
+﻿.env
 node_modules/
-.env
-data/
-*.log
+functions/node_modules/
+.firebase/
+firebase-debug.log

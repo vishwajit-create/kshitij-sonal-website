@@ -1,0 +1,47 @@
+[
+  {
+    "id": "f505450a-2778-4106-8ea9-8f42e31c2b83",
+    "title": "The Paradox of India's IT Dominance",
+    "category": "Commentary",
+    "excerpt": "How can a nation ranked #1 in Asia for IT exports still struggle with last-mile digital connectivity? India's IT paradox reveals deep structural divides between its globally competitive tech elite and its digitally excluded masses.",
+    "body": "<p>India's IT industry is a global phenomenon. With over $250 billion in annual exports and a presence in virtually every Fortune 500 company's technology supply chain, India has earned its reputation as the world's back office.</p><p>Yet step outside the gleaming campuses of Bengaluru's Electronic City or Hyderabad's HITEC City, and a starkly different reality emerges. Broadband penetration in rural India remains below 40%. Digital literacy among adults over 45 hovers around 25%. The India that exports software sophistication to the world cannot yet reliably deliver last-mile digital services to its own citizens.</p><p>This is India's IT paradox — a nation simultaneously at the cutting edge and the trailing edge of the digital revolution.</p>",
+    "tags": [
+      "IT",
+      "Digital Divide",
+      "India",
+      "Technology"
+    ],
+    "date": "2024-04-20",
+    "createdAt": "2026-05-02T02:49:13.096Z"
+  },
+  {
+    "id": "8140dfb6-e405-44d8-996a-90af0597d00d",
+    "title": "Rethinking Fiscal Policy in Emerging Economies",
+    "category": "Economics",
+    "excerpt": "Traditional fiscal conservatism may be poorly suited to the development challenges facing emerging economies. This essay argues for a more dynamic, growth-oriented fiscal framework that balances sustainability with investment imperatives.",
+    "body": "<p>The fiscal policy debate in emerging economies has long been dominated by a conservative orthodoxy inherited from IMF structural adjustment programmes of the 1980s and 1990s. The prescription was simple: cut deficits, reduce debt, and let markets allocate resources efficiently.</p><p>But the empirical record tells a more complex story. Economies that maintained fiscal space for public investment — infrastructure, education, health — consistently outperformed those that pursued austerity. India's own experience with the FRBM (Fiscal Responsibility and Budget Management Act) illustrates both the value of fiscal rules and their limitations when applied rigidly during growth downturns.</p><p>The post-pandemic consensus is shifting. The IMF itself now recognizes that well-targeted public investment can be self-financing through growth multipliers. The question for India is not whether to invest, but where and how efficiently.</p>",
+    "tags": [
+      "Fiscal Policy",
+      "Emerging Markets",
+      "Development",
+      "Economics"
+    ],
+    "date": "2024-02-10",
+    "createdAt": "2026-05-02T02:49:13.096Z"
+  },
+  {
+    "id": "21a6c78b-fa5a-4563-a134-d01e6dd37d66",
+    "title": "India's Agricultural Transformation: Progress and Pitfalls",
+    "category": "Policy",
+    "excerpt": "Despite employing 42% of India's workforce, agriculture contributes only 18% to GDP. This piece examines the challenges and opportunities in modernizing Indian agriculture while protecting farmer livelihoods.",
+    "body": "<p>Agriculture remains the backbone of India's rural economy, yet its contribution to national GDP has steadily declined from 30% in 1990 to around 18% today — even as it continues to employ nearly half the workforce. This structural paradox represents one of India's most pressing development challenges.</p><p>The farm law protests of 2020-21 dramatically illustrated the political sensitivity of agricultural reform. But beyond the politics lies a genuine economic dilemma: how do you modernize agriculture, improve efficiency, and integrate farmers into market supply chains without exposing millions of smallholder farmers to price volatility and corporate market power?</p><p>The answer lies in sequenced reform — building market infrastructure, crop insurance systems, and farmer producer organizations before liberalizing procurement.</p>",
+    "tags": [
+      "Agriculture",
+      "Rural Economy",
+      "India",
+      "Policy Reform"
+    ],
+    "date": "2024-01-05",
+    "createdAt": "2026-05-02T02:49:13.096Z"
+  }
+]

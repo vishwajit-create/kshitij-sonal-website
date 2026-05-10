@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "siteTitle": "Kshitij Sonal",
+    "tagline": "Researcher · Economist · Writer",
+    "kicker": "Welcome to My Research Hub",
+    "heading": "Exploring India's Economic Landscape",
+    "subtitle": "Evidence-based research on macroeconomics, policy, and India's growth story.",
+    "metaLine": "Researcher | Economist | Policy Analyst | Published Author",
+    "cta1Text": "View Research",
+    "cta1Link": "/research.html",
+    "cta2Text": "About Me",
+    "cta2Link": "/about.html",
+    "footerText": "© 2025 Kshitij Sonal. All rights reserved.",
+    "stat1Label": "India GDP Rank",
+    "stat1Value": "#5 World",
+    "stat2Label": "Services Sector",
+    "stat2Value": "54%",
+    "stat3Label": "Manufacturing",
+    "stat3Value": "17%",
+    "stat4Label": "IT Export Rank",
+    "stat4Value": "#1 Asia"
+  },
+  "about": {
+    "name": "Kshitij Sonal",
+    "titleLine": "Researcher & Economist | Policy Analyst",
+    "bio1": "I am an economist and researcher specializing in macroeconomic policy, India's growth dynamics, and the intersection of technology and economic development. My work focuses on evidence-based analysis of India's evolving economic landscape.",
+    "bio2": "Over the years, I have published research across multiple domains including GDP analysis, sectoral growth, digital infrastructure, and fiscal policy. My research has been cited in academic journals and policy discussions at the national level.",
+    "bio3": "Beyond research, I am passionate about communicating complex economic ideas through accessible writing. I regularly contribute articles and essays on contemporary economic issues, bridging the gap between academic research and public understanding.",
+    "photoUrl": "",
+    "interests": "Macroeconomics, Indian Economy, Policy Analysis, Data Science, Fiscal Policy, Digital Infrastructure, Academic Writing, Economic History"
+  },
+  "social": {
+    "email": "",
+    "linkedin": "",
+    "twitter": "",
+    "github": "",
+    "researchgate": "",
+    "ssrn": ""
+  },
+  "colors": {
+    "bg": "#0f0f0f",
+    "surface": "#1a1a1a",
+    "sidebar": "#141414",
+    "gold": "#c9a84c",
+    "orange": "#e07b39",
+    "text": "#e8e8e8",
+    "textSec": "#a0a0a0",
+    "muted": "#555555"
+  },
+  "seo": {
+    "title": "Kshitij Sonal | Researcher & Economist",
+    "description": "Personal research website of Kshitij Sonal — Economist, Policy Analyst, and Published Author."
+  },
+  "admin": {
+    "username": "admin",
+    "passwordHash": "$2a$10$rcpObZA.oByTc./wNicN3eEKNeXZ9otDLMCMVf.LQAWIZBlCFUvA2"
+  }
+}

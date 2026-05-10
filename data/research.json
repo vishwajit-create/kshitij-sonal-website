@@ -1,0 +1,53 @@
+[
+  {
+    "id": "969d4fb0-0cae-42d0-beae-974b51015144",
+    "title": "India's GDP Growth Trajectory in the Post-Pandemic Era",
+    "area": "Macroeconomics",
+    "abstract": "This paper examines India's remarkable economic recovery following the COVID-19 pandemic, analyzing the structural factors that enabled a resilient GDP growth trajectory. We explore fiscal stimulus measures, monetary policy responses, and sectoral contributions to aggregate demand recovery.",
+    "keywords": [
+      "GDP",
+      "India",
+      "Post-Pandemic",
+      "Economic Recovery",
+      "Fiscal Policy"
+    ],
+    "date": "2024-03-15",
+    "body": "<h2>Introduction</h2><p>India's economic recovery from the COVID-19 pandemic has been one of the most remarkable stories in global economics. Despite a historic GDP contraction of 7.3% in FY2020-21, India bounced back with 8.7% growth in FY2021-22.</p><h2>Methodology</h2><p>This study employs a mixed-methods approach combining quantitative analysis of macroeconomic indicators with qualitative assessment of policy interventions.</p><h2>Key Findings</h2><p>Our analysis reveals three primary drivers of recovery: (1) robust government capital expenditure, (2) digital infrastructure enabling service sector resilience, and (3) strong export performance in IT and pharmaceuticals.</p><h2>Conclusion</h2><p>India's post-pandemic recovery trajectory demonstrates the importance of fiscal space management and structural reform in building economic resilience.</p>",
+    "link": "",
+    "createdAt": "2026-05-02T02:49:13.095Z"
+  },
+  {
+    "id": "65306aad-e535-46c0-af9e-9b42e1b19ed6",
+    "title": "Digital Infrastructure and India's Service Sector Expansion",
+    "area": "Policy Analysis",
+    "abstract": "An empirical investigation into how digital public infrastructure—including UPI, Aadhaar, and broadband expansion—has catalyzed growth in India's service sector, contributing significantly to the nation's 54% services share of GDP.",
+    "keywords": [
+      "Digital Infrastructure",
+      "Service Sector",
+      "UPI",
+      "India",
+      "Technology"
+    ],
+    "date": "2023-11-20",
+    "body": "<h2>Abstract</h2><p>Digital infrastructure has emerged as a critical enabler of India's service sector growth. This paper provides empirical evidence linking India Stack components to measurable productivity gains across financial services, retail, and professional services.</p><h2>India Stack: A Transformative Framework</h2><p>The JAM trinity (Jan Dhan, Aadhaar, Mobile) and UPI have collectively onboarded over 500 million Indians into the formal financial system, creating an unprecedented digital services market.</p><h2>Sectoral Impact Analysis</h2><p>Financial technology services have grown at a CAGR of 22% since UPI's launch in 2016. E-commerce, enabled by digital payments and identity verification, now represents 7% of total retail trade.</p>",
+    "link": "",
+    "createdAt": "2026-05-02T02:49:13.096Z"
+  },
+  {
+    "id": "1c213313-c852-4adb-9df4-c9ac5adba679",
+    "title": "Manufacturing Sector Challenges: India vs. East Asian Economies",
+    "area": "Comparative Economics",
+    "abstract": "A comparative analysis of manufacturing sector performance between India and East Asian economies, identifying structural bottlenecks and policy opportunities to increase India's manufacturing share beyond the current 17% of GDP.",
+    "keywords": [
+      "Manufacturing",
+      "East Asia",
+      "India",
+      "Comparative Study",
+      "Industrialization"
+    ],
+    "date": "2023-07-08",
+    "body": "<h2>Introduction</h2><p>India's manufacturing sector has consistently underperformed relative to its East Asian peers. While China, Vietnam, and Bangladesh have leveraged manufacturing as an engine of growth, India's sector stagnated at 15-17% of GDP for over two decades.</p><h2>Comparative Analysis</h2><p>We compare India's manufacturing competitiveness across six dimensions: labor costs, logistics efficiency, regulatory environment, energy costs, infrastructure quality, and skill availability.</p><h2>Policy Recommendations</h2><p>The PLI (Production-Linked Incentive) scheme represents a promising intervention. Our analysis suggests that sector-specific targeting, combined with logistics reform under PM Gati Shakti, could add 3-4 percentage points to manufacturing's GDP share by 2030.</p>",
+    "link": "",
+    "createdAt": "2026-05-02T02:49:13.096Z"
+  }
+]
