@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -31,10 +31,11 @@
   </div>
 </div>
 <script>
-// If already have a valid token, go to dashboard
-if (existing) {
-    .then(r => r.json()).then(d => { if (d.isAdmin) window.location = '/admin/dashboard.html'; })
-}
+// Check if already logged in via session
+fetch('/api/admin/check', { credentials: 'include' })
+  .then(r => r.json())
+  .then(d => { if (d.isAdmin) window.location = '/admin/dashboard.html'; })
+  .catch(() => {});
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -44,8 +45,13 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
   err.style.display = 'none';
   try {
     const res = await fetch('/api/admin/login', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, credentials: 'include',
-      body: JSON.stringify({ username: document.getElementById('l-user').value, password: document.getElementById('l-pass').value })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        username: document.getElementById('l-user').value,
+        password: document.getElementById('l-pass').value
+      })
     });
     const data = await res.json();
     if (data.success) {
