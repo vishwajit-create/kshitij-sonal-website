@@ -1,6 +1,7 @@
 ﻿require('dotenv').config();
 const express = require('express');
-const session = require('express-session');
+const session = require(.express-session.);
+const MemoryStore = require('memorystore')(session);
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
@@ -111,6 +112,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'ks-secret-2024-change-me',
   resave: false,
   saveUninitialized: false,
+  store: new MemoryStore({ checkPeriod: 86400000 }),
   cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 },
 }));
 app.use(express.static(path.join(__dirname, 'public')));
