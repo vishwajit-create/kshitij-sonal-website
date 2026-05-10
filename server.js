@@ -17,7 +17,8 @@ const FILES = {
   research: path.join(DATA_DIR, 'research.json'),
   articles: path.join(DATA_DIR, 'articles.json'),
   news:     path.join(DATA_DIR, 'news.json'),
-  settings: path.join(DATA_DIR, 'settings.json'),
+  settings:  path.join(DATA_DIR, 'settings.json'),
+  enquiries: path.join(DATA_DIR, 'enquiries.json'),
 };
 
 // ── Helpers ───────────────────────────────────────────────────
@@ -167,6 +168,9 @@ app.post('/api/contact', async (req, res) => {
     } else {
       console.log('[Contact Form Submission]', { name, email, subject, message });
     }
+    const enqs=read(FILES.enquiries,[]);
+    enqs.unshift({id:uuidv4(),name,email,subject:subject||'(No subject)',message,date:new Date().toISOString(),read:false});
+    write(FILES.enquiries,enqs);
     res.json({ success: true, message: 'Message sent successfully!' });
   } catch (err) {
     console.error('Mail error:', err);
@@ -280,6 +284,8 @@ app.delete('/api/admin/clear-all', requireAdmin, (req, res) => {
   write(FILES.research, []); write(FILES.articles, []); write(FILES.news, []);
   res.json({ success: true });
 });
+app.get('/api/admin/enquiries',requireAdmin,(req,res)=>res.json(read(FILES.enquiries,[])));
+app.delete('/api/admin/enquiries/:id',requireAdmin,(req,res)=>{let list=read(FILES.enquiries,[]);list=list.filter(e=>e.id!==req.params.id);write(FILES.enquiries,list);res.json({success:true});});
 app.get('/api/admin/stats', requireAdmin, (req, res) => {
   const research = read(FILES.research, []);
   const articles = read(FILES.articles, []);
@@ -289,7 +295,8 @@ app.get('/api/admin/stats', requireAdmin, (req, res) => {
     ...articles.map(i=>({...i,type:'Article'})),
     ...news.map(i=>({...i,type:'News'})),
   ].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).slice(0,6);
-  res.json({ research: research.length, articles: articles.length, news: news.length, total: research.length+articles.length+news.length, recent: all });
+  const enquiries=read(FILES.enquiries,[]);
+  res.json({research:research.length,articles:articles.length,news:news.length,total:research.length+articles.length+news.length,enquiries:enquiries.length,unread:enquiries.filter(e=>!e.read).length,recent:all});
 });
 
 // ── Start ─────────────────────────────────────────────────────
