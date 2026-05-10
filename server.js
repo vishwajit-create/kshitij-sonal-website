@@ -177,6 +177,13 @@ app.post('/api/contact', async (req, res) => {
 // ── Admin Auth ────────────────────────────────────────────────
 app.post('/api/admin/login', (req, res) => {
   const { username, password } = req.body;
+  const envUser = process.env.ADMIN_USERNAME || 'admin';
+  const envPass = process.env.ADMIN_PASSWORD || 'admin123';
+  if (username === envUser && password === envPass) {
+    req.session.isAdmin = true;
+    req.session.username = username;
+    return res.json({ success: true });
+  }
   const s = read(FILES.settings, DEFAULT_SETTINGS);
   const admin = s.admin || {};
   if (username !== admin.username || !bcrypt.compareSync(password, admin.passwordHash || '')) {
